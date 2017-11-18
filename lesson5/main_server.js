@@ -20,7 +20,7 @@ var server=http.createServer(function(req,res){
         console.log(url,GET,POST);
     });
 
-    //文件请求
+    //文件请求 
     var file_name="./www"+url;
     fs.readFile(file_name,function(err,data){
         if(err){
