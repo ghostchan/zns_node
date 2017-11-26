@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="ajax.js"></script>
+
+</head>
+
+<body>
+    用户：
+    <input type="text" id="user">
+    <br> 密码：
+    <input type="password" id="pass">
+    <button id="btn1">提交</button>
+    <script type="text/javascript">
+        var oUser = document.getElementById('user');
+        var oPass = document.getElementById('pass');
+        var oBtn = document.getElementById('btn1');
+
+        oBtn.onclick = function () {
+            ajax({
+                url: '/login',
+                data: { user: oUser.value, pass: oPass.value },
+                success: function (str) {
+                    var json = eval('(' + str + ')');
+                    console.log(json);
+                    if (json.ok) {
+                        alert('登录成功');
+                    } else {
+                        alert('失败' + json.msg);
+                    }
+
+                },
+                error: function () {
+                    alert('通信失败');
+                }
+
+            });
+        }
+    </script>
+</body>
+
+</html>
